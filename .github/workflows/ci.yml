@@ -45,7 +45,11 @@ jobs:
       - name: Install dependencies
         run: |
           go version
-          go get -u golang.org/x/lint/golint
+          go install golang.org/x/lint/golint@latest
+      - name: Run golint
+        run: |
+          go vet .
+          golint .
       - name: Run testing
         run: go test -v
       - name: Send slack notification
